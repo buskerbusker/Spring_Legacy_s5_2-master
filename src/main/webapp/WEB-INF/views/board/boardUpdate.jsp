@@ -40,12 +40,14 @@
 
 			<div class="form-group">
 				<label for="contents">Files:</label>
-				<c:forEach items="${vo.boardFileVOs}" var="fileVO">
-					<p id="pdel">${fileVO.oriName}<i id="${fileVO.fileNum}"
-							title="${fileVO.board}"
-							class="glyphicon glyphicon-remove remove fileDelete"></i>
-					</p>
-				</c:forEach>
+				<c:catch>
+					<c:forEach items="${vo.boardFileVOs}" var="fileVO">
+						<p id="pdel">${fileVO.oriName}<i id="${fileVO.fileNum}"
+								title="${fileVO.board}"
+								class="glyphicon glyphicon-remove remove fileDelete"></i>
+						</p>
+					</c:forEach>
+				</c:catch>
 
 			</div>
 

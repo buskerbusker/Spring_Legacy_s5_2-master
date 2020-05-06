@@ -22,24 +22,27 @@
 		<div class="panel panel-warning">
 			<div class="panel-heading">${vo.regDate}</div>
 		</div>
-		
+
 		<div>
-			<c:forEach items="${vo.boardFileVOs}" var="file">
-				<div>
-					<a href="../boardFile/fileDown?fileNum=${file.fileNum}&board=${file.board}">${file.oriName}</a>
-				
-				</div>
-			
-			</c:forEach>
-		
-		
+			<c:catch>
+				<c:forEach items="${vo.boardFileVOs}" var="file">
+					<div>
+						<a
+							href="../boardFile/fileDown?fileNum=${file.fileNum}&board=${file.board}">${file.oriName}</a>
+
+					</div>
+
+				</c:forEach>
+			</c:catch>
+
+
 		</div>
 
 		<div>
-			<a href="./${board}Update?num=${vo.num}" class="btn btn-primary">Update</a> 
+			<a href="./${board}Update?num=${vo.num}" class="btn btn-primary">Update</a>
 			<a href="./${board}Delete?num=${vo.num}" class="btn btn-danger">Delete</a>
 			<c:if test="${board ne 'notice'}">
-			<a href="./${board}Reply?num=${vo.num}" class="btn btn-info">Reply</a>
+				<a href="./${board}Reply?num=${vo.num}" class="btn btn-info">Reply</a>
 			</c:if>
 		</div>
 
