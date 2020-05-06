@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iu.s5.board.file.BoardFileDAO">
+
+	<insert id="fileInsert" parameterType="BoardFileVO">
+		insert into boardFile
+		values(file_seq.nextval, #{num}, #{fileName}, #{oriName}, #{board})
+	</insert>
+
+	<select id="fileSelect" parameterType="BoardFileVO"
+		resultType="BoardFileVO">
+		select * from boardFile where fileNum=#{fileNum} and
+		board=#{board}
+	</select>
+
+	<delete id="fileDelete" parameterType="BoardFileVO">
+		delete boardFile where
+		fileNum=#{fileNum}
+	</delete>
+
+	<select id="fileList" parameterType="Long"
+		resultType="BoardFileVO">
+		select * from boardFile where num=#{num}
+	</select>
+
+	<delete id="fileDeleteAll" parameterType="BoardFileVO">
+		delete boardFile where
+		num=#{num}
+	</delete>
+
+
+</mapper>  

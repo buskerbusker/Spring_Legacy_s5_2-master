@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.iu.s5.qna.QnaDAO">
+	<sql id="search">
+		where 
+		<choose>
+			<when test="kind == 'bt'">
+				title
+			</when>
+			<when test="kind=='bw'">
+				writer
+			</when>
+			<otherwise>
+				contents
+			</otherwise>
+		</choose>
+		like '%'||#{search}||'%'
+	</sql>
+
+	<select id="boardCount" parameterType="Pager" resultType="Long">
+		select count(num) from qna
+		<include refid="search"></include>
+	</select>
+	
+	<select id="boardList" parameterType="Pager" resultType="QnaVO">
+		select * from
+		(select Q.*, rownum R from
+		(select * from qna 
+		<include refid="search"></include>
+		order by ref desc, step asc) Q)
+		where R between #{startRow} and #{lastRow}
+	
+	</select>
+	
+	<insert id="boardWrite" parameterType="QnaVO">
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+			select board_seq.nextval from dual
+		</selectKey>
+	
+		insert into qna values(
+		#{num},
+		#{title},
+		#{writer},
+		#{contents},
+		sysdate,
+		0,
+		#{num},
+		0,
+		0
+		)
+	</insert>
+	
+	<select id="boardSelect" parameterType="Long" resultType="QnaVO">
+		select * from qna where num=#{num}
+	</select>
+	
+	<update id="boardReplyUpdate" parameterType="QnaVO">
+		update qna set step=step+1 where
+		ref = (select ref from qna where num=#{num})
+		and
+		step > (select step from qna where num=#{num})
+	</update>
+	
+	<insert id="boardReply" parameterType="QnaVO">
+		insert into qna values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0,
+		(select ref from qna where num=#{num}),
+		(select step from qna where num=#{num})+1,
+		(select depth from qna where num=#{num})+1
+		)
+	
+	</insert>
+	
+	
+	
+	
+</mapper>  

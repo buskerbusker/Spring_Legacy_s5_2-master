@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="java.lang.Long" alias="Long"/>
+		<typeAlias type="java.lang.String" alias="String"/>
+		<typeAlias type="java.util.List" alias="List"/>
+		
+		<typeAlias type="com.iu.s5.notice.NoticeVO" alias="NoticeVO"/>
+		<typeAlias type="com.iu.s5.qna.QnaVO" alias="QnaVO"/>
+		<typeAlias type="com.iu.s5.member.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.iu.s5.member.memberFile.MemberFileVO" alias="MemberFileVO"/>
+		<typeAlias type="com.iu.s5.board.file.BoardFileVO" alias="BoardFileVO"/>
+		<typeAlias type="com.iu.s5.memo.MemoVO" alias="MemoVO"/>
+		<typeAlias type="com.iu.s5.util.Pager" alias="Pager"/>
+	
+	</typeAliases>
+
+</configuration>  

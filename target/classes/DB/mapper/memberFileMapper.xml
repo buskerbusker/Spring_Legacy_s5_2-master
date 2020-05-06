@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.iu.s5.member.memberFile.MemberFileDAO">
+	
+	<insert id="fileInsert" parameterType="MemberFileVO">
+		insert into memberFile values(#{id}, #{fileName}, #{oriName})
+	</insert>
+	
+	<select id="fileSelect" parameterType="String" resultType="MemberFileVO">
+		select * from memberFile where id=#{id}
+	</select>
+	
+	<delete id="fileDelete" parameterType="String">
+		DELETE MEMBERFILE WHERE ID=#{id}
+	</delete>
+
+</mapper>  

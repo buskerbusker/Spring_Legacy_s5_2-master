@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.iu.s5.memo.MemoDAO">
+	
+	<select id="memoList" parameterType="Pager" resultType="MemoVO">
+		select * from
+		(select M.*, rownum R from
+		(select * from memo where num > 0 order by num desc) M)
+		where R between #{startRow} and #{lastRow}
+	
+	</select>
+	
+	<insert id="memoInsert" parameterType="MemoVO">
+		insert into memo values(board_seq.nextval, #{writer}, #{contents}, sysdate)
+	</insert>
+
+</mapper>  
