@@ -11,6 +11,13 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
+	<beans:bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		id="propertyPlaceholderConfigurerF">
+		<beans:property name="locations"
+			value="classpath:DB/config/*.properties"></beans:property>
+	</beans:bean>
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
